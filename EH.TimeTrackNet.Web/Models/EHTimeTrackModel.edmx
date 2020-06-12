@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EH.TimeTrackWeb.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="REF_ACTIVITY_TYPE_TB">
+          <Key>
+            <PropertyRef Name="N_ACTIVITY_TYPE_SYSID" />
+          </Key>
+          <Property Name="N_ACTIVITY_TYPE_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SZ_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="varchar" MaxLength="1000" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_OPTION_TB">
+          <Key>
+            <PropertyRef Name="N_OPTION_SYSID" />
+          </Key>
+          <Property Name="N_OPTION_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SZ_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="varchar" MaxLength="1000" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_PROGRAM_TB">
+          <Key>
+            <PropertyRef Name="N_PROGRAM_SYSID" />
+          </Key>
+          <Property Name="N_PROGRAM_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="N_SECTION_SYSID" Type="int" Nullable="false" />
+          <Property Name="SZ_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="varchar" MaxLength="1000" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_SAMPLE_TYPE_TB">
+          <Key>
+            <PropertyRef Name="N_SAMPLE_TYPE_SYSID" />
+          </Key>
+          <Property Name="N_SAMPLE_TYPE_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SZ_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="varchar" MaxLength="1000" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_SECTION_TB">
+          <Key>
+            <PropertyRef Name="N_SECTION_SYSID" />
+          </Key>
+          <Property Name="N_SECTION_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SZ_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="varchar" MaxLength="1000" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_SUBPROGRAM_TB">
+          <Key>
+            <PropertyRef Name="N_SUBPROGRAM_SYSID" />
+          </Key>
+          <Property Name="N_SUBPROGRAM_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="N_PROGRAM_SYSID" Type="int" Nullable="false" />
+          <Property Name="SZ_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="varchar" MaxLength="1000" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REF_WORKER_TB">
+          <Key>
+            <PropertyRef Name="N_WORKER_SYSID" />
+          </Key>
+          <Property Name="N_WORKER_SYSID" Type="int" Nullable="false" />
+          <Property Name="SZ_USER_NAME" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="N_WORKER_NUMBER" Type="int" Nullable="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_SAMPLE_TB">
+          <Key>
+            <PropertyRef Name="N_SAMPLE_SYSID" />
+          </Key>
+          <Property Name="N_SAMPLE_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" Type="int" Nullable="false" />
+          <Property Name="N_SAMPLE_TYPE_SYSID" Type="int" Nullable="false" />
+          <Property Name="N_QUANTITY" Type="int" Nullable="false" />
+          <Property Name="N_TEMPORARY_ID" Type="int" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_SERVICE_TB">
+          <Key>
+            <PropertyRef Name="N_SERVICE_SYSID" />
+          </Key>
+          <Property Name="N_SERVICE_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DT_SERVICE" Type="datetime" Nullable="false" />
+          <Property Name="SZ_USER_NAME" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="N_WORKER_NUMBER" Type="int" Nullable="false" />
+          <Property Name="N_MILEAGE_QUANTITY" Type="int" />
+          <Property Name="N_MILEAGE_TIME" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="N_CALLS_QUANTITY" Type="int" />
+          <Property Name="N_CALLS_TIME" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="N_CONSULT_QUANTITY" Type="int" />
+          <Property Name="N_CONSULT_TIME" Type="decimal" Precision="11" Scale="4" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+          <Key>
+            <PropertyRef Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+          </Key>
+          <Property Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="N_SERVICE_SYSID" Type="int" Nullable="false" />
+          <Property Name="N_ACTIVITY_TYPE_SYSID" Type="int" Nullable="false" />
+          <Property Name="N_PROGRAM_SYSID" Type="int" Nullable="false" />
+          <Property Name="N_SUBPROGRAM_SYSID" Type="int" />
+          <Property Name="N_OPTION_SYSID" Type="int" />
+          <Property Name="SZ_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="N_TIME" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SZ_FIPS_CODE" Type="varchar" MaxLength="12" />
+          <Property Name="SZ_ADDRESS" Type="varchar" MaxLength="1000" />
+          <Property Name="SZ_IDENTICAL_SERVICE_CODE" Type="varchar" MaxLength="100" />
+          <Property Name="N_TEMPORARY_ID" Type="int" />
+          <Property Name="SZ_MODIFIED_BY" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="datetime" Nullable="false" />
+          <Property Name="B_INACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID">
+          <End Role="REF_SECTION_TB" Type="Self.REF_SECTION_TB" Multiplicity="1" />
+          <End Role="REF_PROGRAM_TB" Type="Self.REF_PROGRAM_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_SECTION_TB">
+              <PropertyRef Name="N_SECTION_SYSID" />
+            </Principal>
+            <Dependent Role="REF_PROGRAM_TB">
+              <PropertyRef Name="N_SECTION_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID">
+          <End Role="REF_PROGRAM_TB" Type="Self.REF_PROGRAM_TB" Multiplicity="1" />
+          <End Role="REF_SUBPROGRAM_TB" Type="Self.REF_SUBPROGRAM_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_PROGRAM_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Principal>
+            <Dependent Role="REF_SUBPROGRAM_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID">
+          <End Role="REF_SAMPLE_TYPE_TB" Type="Self.REF_SAMPLE_TYPE_TB" Multiplicity="1" />
+          <End Role="TRN_SAMPLE_TB" Type="Self.TRN_SAMPLE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_SAMPLE_TYPE_TB">
+              <PropertyRef Name="N_SAMPLE_TYPE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SAMPLE_TB">
+              <PropertyRef Name="N_SAMPLE_TYPE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE">
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="1" />
+          <End Role="TRN_SAMPLE_TB" Type="Self.TRN_SAMPLE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SAMPLE_TB">
+              <PropertyRef Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID">
+          <End Role="REF_ACTIVITY_TYPE_TB" Type="Self.REF_ACTIVITY_TYPE_TB" Multiplicity="1" />
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_ACTIVITY_TYPE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_ACTIVITY_TYPE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID">
+          <End Role="REF_OPTION_TB" Type="Self.REF_OPTION_TB" Multiplicity="0..1" />
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_OPTION_TB">
+              <PropertyRef Name="N_OPTION_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_OPTION_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID">
+          <End Role="REF_PROGRAM_TB" Type="Self.REF_PROGRAM_TB" Multiplicity="1" />
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_PROGRAM_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID">
+          <End Role="REF_SUBPROGRAM_TB" Type="Self.REF_SUBPROGRAM_TB" Multiplicity="0..1" />
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_SUBPROGRAM_TB">
+              <PropertyRef Name="N_SUBPROGRAM_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_SUBPROGRAM_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID">
+          <End Role="TRN_SERVICE_TB" Type="Self.TRN_SERVICE_TB" Multiplicity="1" />
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_SERVICE_TB">
+              <PropertyRef Name="N_SERVICE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_SERVICE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_PurgeActivityData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="purgeDate" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="EHTimeTrackWebModelsStoreContainer">
+          <EntitySet Name="REF_ACTIVITY_TYPE_TB" EntityType="Self.REF_ACTIVITY_TYPE_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REF_OPTION_TB" EntityType="Self.REF_OPTION_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REF_PROGRAM_TB" EntityType="Self.REF_PROGRAM_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REF_SAMPLE_TYPE_TB" EntityType="Self.REF_SAMPLE_TYPE_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REF_SECTION_TB" EntityType="Self.REF_SECTION_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REF_SUBPROGRAM_TB" EntityType="Self.REF_SUBPROGRAM_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REF_WORKER_TB" EntityType="Self.REF_WORKER_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_SAMPLE_TB" EntityType="Self.TRN_SAMPLE_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_SERVICE_TB" EntityType="Self.TRN_SERVICE_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntityType="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID" Association="Self.FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID">
+            <End Role="REF_SECTION_TB" EntitySet="REF_SECTION_TB" />
+            <End Role="REF_PROGRAM_TB" EntitySet="REF_PROGRAM_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID" Association="Self.FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID">
+            <End Role="REF_PROGRAM_TB" EntitySet="REF_PROGRAM_TB" />
+            <End Role="REF_SUBPROGRAM_TB" EntitySet="REF_SUBPROGRAM_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID" Association="Self.FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID">
+            <End Role="REF_SAMPLE_TYPE_TB" EntitySet="REF_SAMPLE_TYPE_TB" />
+            <End Role="TRN_SAMPLE_TB" EntitySet="TRN_SAMPLE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE" Association="Self.FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE">
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+            <End Role="TRN_SAMPLE_TB" EntitySet="TRN_SAMPLE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID">
+            <End Role="REF_ACTIVITY_TYPE_TB" EntitySet="REF_ACTIVITY_TYPE_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID">
+            <End Role="REF_OPTION_TB" EntitySet="REF_OPTION_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID">
+            <End Role="REF_PROGRAM_TB" EntitySet="REF_PROGRAM_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID">
+            <End Role="REF_SUBPROGRAM_TB" EntitySet="REF_SUBPROGRAM_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID">
+            <End Role="TRN_SERVICE_TB" EntitySet="TRN_SERVICE_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EH.TimeTrackWeb.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="REF_ACTIVITY_TYPE_TB">
+          <Key>
+            <PropertyRef Name="N_ACTIVITY_TYPE_SYSID" />
+          </Key>
+          <Property Name="N_ACTIVITY_TYPE_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SZ_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID" FromRole="REF_ACTIVITY_TYPE_TB" ToRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+        </EntityType>
+        <EntityType Name="REF_OPTION_TB">
+          <Key>
+            <PropertyRef Name="N_OPTION_SYSID" />
+          </Key>
+          <Property Name="N_OPTION_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SZ_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID" FromRole="REF_OPTION_TB" ToRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+        </EntityType>
+        <EntityType Name="REF_PROGRAM_TB">
+          <Key>
+            <PropertyRef Name="N_PROGRAM_SYSID" />
+          </Key>
+          <Property Name="N_PROGRAM_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="N_SECTION_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="SZ_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="REF_SECTION_TB" Relationship="Self.FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID" FromRole="REF_PROGRAM_TB" ToRole="REF_SECTION_TB" />
+          <NavigationProperty Name="REF_SUBPROGRAM_TB" Relationship="Self.FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID" FromRole="REF_PROGRAM_TB" ToRole="REF_SUBPROGRAM_TB" />
+          <NavigationProperty Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID" FromRole="REF_PROGRAM_TB" ToRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+        </EntityType>
+        <EntityType Name="REF_SAMPLE_TYPE_TB">
+          <Key>
+            <PropertyRef Name="N_SAMPLE_TYPE_SYSID" />
+          </Key>
+          <Property Name="N_SAMPLE_TYPE_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SZ_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="TRN_SAMPLE_TB" Relationship="Self.FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID" FromRole="REF_SAMPLE_TYPE_TB" ToRole="TRN_SAMPLE_TB" />
+        </EntityType>
+        <EntityType Name="REF_SECTION_TB">
+          <Key>
+            <PropertyRef Name="N_SECTION_SYSID" />
+          </Key>
+          <Property Name="N_SECTION_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SZ_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="REF_PROGRAM_TB" Relationship="Self.FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID" FromRole="REF_SECTION_TB" ToRole="REF_PROGRAM_TB" />
+        </EntityType>
+        <EntityType Name="REF_SUBPROGRAM_TB">
+          <Key>
+            <PropertyRef Name="N_SUBPROGRAM_SYSID" />
+          </Key>
+          <Property Name="N_SUBPROGRAM_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="N_PROGRAM_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="SZ_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SZ_DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="REF_PROGRAM_TB" Relationship="Self.FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID" FromRole="REF_SUBPROGRAM_TB" ToRole="REF_PROGRAM_TB" />
+          <NavigationProperty Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID" FromRole="REF_SUBPROGRAM_TB" ToRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+        </EntityType>
+        <EntityType Name="TRN_SAMPLE_TB">
+          <Key>
+            <PropertyRef Name="N_SAMPLE_SYSID" />
+          </Key>
+          <Property Name="N_SAMPLE_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="N_SAMPLE_TYPE_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="N_QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="N_TEMPORARY_ID" Type="Int32" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="REF_SAMPLE_TYPE_TB" Relationship="Self.FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID" FromRole="TRN_SAMPLE_TB" ToRole="REF_SAMPLE_TYPE_TB" />
+          <NavigationProperty Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Relationship="Self.FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE" FromRole="TRN_SAMPLE_TB" ToRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+        </EntityType>
+        <EntityType Name="TRN_SERVICE_TB">
+          <Key>
+            <PropertyRef Name="N_SERVICE_SYSID" />
+          </Key>
+          <Property Name="N_SERVICE_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DT_SERVICE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SZ_USER_NAME" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="N_WORKER_NUMBER" Type="Int32" Nullable="false" />
+          <Property Name="N_MILEAGE_QUANTITY" Type="Int32" />
+          <Property Name="N_MILEAGE_TIME" Type="Decimal" Precision="14" Scale="2" />
+          <Property Name="N_CALLS_QUANTITY" Type="Int32" />
+          <Property Name="N_CALLS_TIME" Type="Decimal" Precision="11" Scale="4" />
+          <Property Name="N_CONSULT_QUANTITY" Type="Int32" />
+          <Property Name="N_CONSULT_TIME" Type="Decimal" Precision="11" Scale="4" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID" FromRole="TRN_SERVICE_TB" ToRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+        </EntityType>
+        <EntityType Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+          <Key>
+            <PropertyRef Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+          </Key>
+          <Property Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="N_SERVICE_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="N_ACTIVITY_TYPE_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="N_PROGRAM_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="N_SUBPROGRAM_SYSID" Type="Int32" />
+          <Property Name="N_OPTION_SYSID" Type="Int32" />
+          <Property Name="SZ_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="N_TIME" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SZ_FIPS_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_ADDRESS" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SZ_IDENTICAL_SERVICE_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="N_TEMPORARY_ID" Type="Int32" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <NavigationProperty Name="REF_ACTIVITY_TYPE_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID" FromRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" ToRole="REF_ACTIVITY_TYPE_TB" />
+          <NavigationProperty Name="REF_OPTION_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID" FromRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" ToRole="REF_OPTION_TB" />
+          <NavigationProperty Name="REF_PROGRAM_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID" FromRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" ToRole="REF_PROGRAM_TB" />
+          <NavigationProperty Name="REF_SUBPROGRAM_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID" FromRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" ToRole="REF_SUBPROGRAM_TB" />
+          <NavigationProperty Name="TRN_SAMPLE_TB" Relationship="Self.FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE" FromRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" ToRole="TRN_SAMPLE_TB" />
+          <NavigationProperty Name="TRN_SERVICE_TB" Relationship="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID" FromRole="TRN_SERVICE_X_ACTIVITY_TYPE_TB" ToRole="TRN_SERVICE_TB" />
+        </EntityType>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID">
+          <End Role="REF_ACTIVITY_TYPE_TB" Type="Self.REF_ACTIVITY_TYPE_TB" Multiplicity="1" >
+          </End>
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_ACTIVITY_TYPE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_ACTIVITY_TYPE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID">
+          <End Role="REF_OPTION_TB" Type="Self.REF_OPTION_TB" Multiplicity="0..1" >
+          </End>
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_OPTION_TB">
+              <PropertyRef Name="N_OPTION_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_OPTION_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID">
+          <End Role="REF_SECTION_TB" Type="Self.REF_SECTION_TB" Multiplicity="1" >
+          </End>
+          <End Role="REF_PROGRAM_TB" Type="Self.REF_PROGRAM_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_SECTION_TB">
+              <PropertyRef Name="N_SECTION_SYSID" />
+            </Principal>
+            <Dependent Role="REF_PROGRAM_TB">
+              <PropertyRef Name="N_SECTION_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID">
+          <End Role="REF_PROGRAM_TB" Type="Self.REF_PROGRAM_TB" Multiplicity="1" >
+          </End>
+          <End Role="REF_SUBPROGRAM_TB" Type="Self.REF_SUBPROGRAM_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_PROGRAM_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Principal>
+            <Dependent Role="REF_SUBPROGRAM_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID">
+          <End Role="REF_PROGRAM_TB" Type="Self.REF_PROGRAM_TB" Multiplicity="1" >
+          </End>
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_PROGRAM_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_PROGRAM_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID">
+          <End Role="REF_SAMPLE_TYPE_TB" Type="Self.REF_SAMPLE_TYPE_TB" Multiplicity="1" >
+          </End>
+          <End Role="TRN_SAMPLE_TB" Type="Self.TRN_SAMPLE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_SAMPLE_TYPE_TB">
+              <PropertyRef Name="N_SAMPLE_TYPE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SAMPLE_TB">
+              <PropertyRef Name="N_SAMPLE_TYPE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID">
+          <End Role="REF_SUBPROGRAM_TB" Type="Self.REF_SUBPROGRAM_TB" Multiplicity="0..1" >
+          </End>
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REF_SUBPROGRAM_TB">
+              <PropertyRef Name="N_SUBPROGRAM_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_SUBPROGRAM_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE">
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="1" >
+          </End>
+          <End Role="TRN_SAMPLE_TB" Type="Self.TRN_SAMPLE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SAMPLE_TB">
+              <PropertyRef Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID">
+          <End Role="TRN_SERVICE_TB" Type="Self.TRN_SERVICE_TB" Multiplicity="1" >
+          </End>
+          <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" Type="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRN_SERVICE_TB">
+              <PropertyRef Name="N_SERVICE_SYSID" />
+            </Principal>
+            <Dependent Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <PropertyRef Name="N_SERVICE_SYSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="REF_ACTIVITY_TYPE_TB" EntityType="Self.REF_ACTIVITY_TYPE_TB" />
+          <EntitySet Name="REF_OPTION_TB" EntityType="Self.REF_OPTION_TB" />
+          <EntitySet Name="REF_PROGRAM_TB" EntityType="Self.REF_PROGRAM_TB" />
+          <EntitySet Name="REF_SAMPLE_TYPE_TB" EntityType="Self.REF_SAMPLE_TYPE_TB" />
+          <EntitySet Name="REF_SECTION_TB" EntityType="Self.REF_SECTION_TB" />
+          <EntitySet Name="REF_SUBPROGRAM_TB" EntityType="Self.REF_SUBPROGRAM_TB" />
+          <EntitySet Name="TRN_SAMPLE_TB" EntityType="Self.TRN_SAMPLE_TB" />
+          <EntitySet Name="TRN_SERVICE_TB" EntityType="Self.TRN_SERVICE_TB" />
+          <EntitySet Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntityType="Self.TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_ACTIVITY_TYPE_N_ACTIVITY_TYPE_SYSID">
+            <End Role="REF_ACTIVITY_TYPE_TB" EntitySet="REF_ACTIVITY_TYPE_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_OPTION_N_OPTION_SYSID">
+            <End Role="REF_OPTION_TB" EntitySet="REF_OPTION_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID" Association="Self.FK_REF_PROGRAM_REF_SECTION_N_SECTION_SYSID">
+            <End Role="REF_SECTION_TB" EntitySet="REF_SECTION_TB" />
+            <End Role="REF_PROGRAM_TB" EntitySet="REF_PROGRAM_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID" Association="Self.FK_REF_SUBPROGRAM_REF_PROGRAM_N_PROGRAM_SYSID">
+            <End Role="REF_PROGRAM_TB" EntitySet="REF_PROGRAM_TB" />
+            <End Role="REF_SUBPROGRAM_TB" EntitySet="REF_SUBPROGRAM_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_PROGRAM_N_PROGRAM_SYSID">
+            <End Role="REF_PROGRAM_TB" EntitySet="REF_PROGRAM_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID" Association="Self.FK_TRN_SAMPLE_REF_SAMPLE_TYPE_N_SAMPLE_TYPE_SYSID">
+            <End Role="REF_SAMPLE_TYPE_TB" EntitySet="REF_SAMPLE_TYPE_TB" />
+            <End Role="TRN_SAMPLE_TB" EntitySet="TRN_SAMPLE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_REF_SUBPROGRAM_N_SUBPROGRAM_SYSID">
+            <End Role="REF_SUBPROGRAM_TB" EntitySet="REF_SUBPROGRAM_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE" Association="Self.FK_TRN_SAMPLE_TRN_SERVICE_X_ACTIVITY_TYPE">
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+            <End Role="TRN_SAMPLE_TB" EntitySet="TRN_SAMPLE_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID" Association="Self.FK_TRN_SERVICE_X_ACTIVITY_TYPE_TRN_SERVICE_N_SERVICE_SYSID">
+            <End Role="TRN_SERVICE_TB" EntitySet="TRN_SERVICE_TB" />
+            <End Role="TRN_SERVICE_X_ACTIVITY_TYPE_TB" EntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB" />
+          </AssociationSet>
+          <FunctionImport Name="usp_PurgeActivityData">
+          <Parameter Name="purgeDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PurgeActivityDataCas">
+            <Parameter Name="purgeDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="REF_WORKER_TB" EntityType="EH.TimeTrackWeb.Models.REF_WORKER_TB" />
+        </EntityContainer>
+        <EntityType Name="REF_WORKER_TB">
+          <Key>
+            <PropertyRef Name="N_WORKER_SYSID" />
+          </Key>
+          <Property Name="N_WORKER_SYSID" Type="Int32" Nullable="false" />
+          <Property Name="SZ_USER_NAME" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="N_WORKER_NUMBER" Type="Int32" Nullable="false" />
+          <Property Name="SZ_MODIFIED_BY" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="DT_MODIFIED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="B_INACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SZ_TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EHTimeTrackWebModelsStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="REF_ACTIVITY_TYPE_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.REF_ACTIVITY_TYPE_TB">
+              <MappingFragment StoreEntitySet="REF_ACTIVITY_TYPE_TB">
+                <ScalarProperty Name="N_ACTIVITY_TYPE_SYSID" ColumnName="N_ACTIVITY_TYPE_SYSID" />
+                <ScalarProperty Name="SZ_CODE" ColumnName="SZ_CODE" />
+                <ScalarProperty Name="SZ_DESCRIPTION" ColumnName="SZ_DESCRIPTION" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_OPTION_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.REF_OPTION_TB">
+              <MappingFragment StoreEntitySet="REF_OPTION_TB">
+                <ScalarProperty Name="N_OPTION_SYSID" ColumnName="N_OPTION_SYSID" />
+                <ScalarProperty Name="SZ_CODE" ColumnName="SZ_CODE" />
+                <ScalarProperty Name="SZ_DESCRIPTION" ColumnName="SZ_DESCRIPTION" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_PROGRAM_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.REF_PROGRAM_TB">
+              <MappingFragment StoreEntitySet="REF_PROGRAM_TB">
+                <ScalarProperty Name="N_PROGRAM_SYSID" ColumnName="N_PROGRAM_SYSID" />
+                <ScalarProperty Name="N_SECTION_SYSID" ColumnName="N_SECTION_SYSID" />
+                <ScalarProperty Name="SZ_CODE" ColumnName="SZ_CODE" />
+                <ScalarProperty Name="SZ_DESCRIPTION" ColumnName="SZ_DESCRIPTION" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_SAMPLE_TYPE_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.REF_SAMPLE_TYPE_TB">
+              <MappingFragment StoreEntitySet="REF_SAMPLE_TYPE_TB">
+                <ScalarProperty Name="N_SAMPLE_TYPE_SYSID" ColumnName="N_SAMPLE_TYPE_SYSID" />
+                <ScalarProperty Name="SZ_CODE" ColumnName="SZ_CODE" />
+                <ScalarProperty Name="SZ_DESCRIPTION" ColumnName="SZ_DESCRIPTION" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_SECTION_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.REF_SECTION_TB">
+              <MappingFragment StoreEntitySet="REF_SECTION_TB">
+                <ScalarProperty Name="N_SECTION_SYSID" ColumnName="N_SECTION_SYSID" />
+                <ScalarProperty Name="SZ_CODE" ColumnName="SZ_CODE" />
+                <ScalarProperty Name="SZ_DESCRIPTION" ColumnName="SZ_DESCRIPTION" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_SUBPROGRAM_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.REF_SUBPROGRAM_TB">
+              <MappingFragment StoreEntitySet="REF_SUBPROGRAM_TB">
+                <ScalarProperty Name="N_SUBPROGRAM_SYSID" ColumnName="N_SUBPROGRAM_SYSID" />
+                <ScalarProperty Name="N_PROGRAM_SYSID" ColumnName="N_PROGRAM_SYSID" />
+                <ScalarProperty Name="SZ_CODE" ColumnName="SZ_CODE" />
+                <ScalarProperty Name="SZ_DESCRIPTION" ColumnName="SZ_DESCRIPTION" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_SAMPLE_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.TRN_SAMPLE_TB">
+              <MappingFragment StoreEntitySet="TRN_SAMPLE_TB">
+                <ScalarProperty Name="N_SAMPLE_SYSID" ColumnName="N_SAMPLE_SYSID" />
+                <ScalarProperty Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" ColumnName="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+                <ScalarProperty Name="N_SAMPLE_TYPE_SYSID" ColumnName="N_SAMPLE_TYPE_SYSID" />
+                <ScalarProperty Name="N_QUANTITY" ColumnName="N_QUANTITY" />
+                <ScalarProperty Name="N_TEMPORARY_ID" ColumnName="N_TEMPORARY_ID" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_SERVICE_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.TRN_SERVICE_TB">
+              <MappingFragment StoreEntitySet="TRN_SERVICE_TB">
+                <ScalarProperty Name="N_SERVICE_SYSID" ColumnName="N_SERVICE_SYSID" />
+                <ScalarProperty Name="DT_SERVICE" ColumnName="DT_SERVICE" />
+                <ScalarProperty Name="SZ_USER_NAME" ColumnName="SZ_USER_NAME" />
+                <ScalarProperty Name="N_WORKER_NUMBER" ColumnName="N_WORKER_NUMBER" />
+                <ScalarProperty Name="N_MILEAGE_QUANTITY" ColumnName="N_MILEAGE_QUANTITY" />
+                <ScalarProperty Name="N_MILEAGE_TIME" ColumnName="N_MILEAGE_TIME" />
+                <ScalarProperty Name="N_CALLS_QUANTITY" ColumnName="N_CALLS_QUANTITY" />
+                <ScalarProperty Name="N_CALLS_TIME" ColumnName="N_CALLS_TIME" />
+                <ScalarProperty Name="N_CONSULT_QUANTITY" ColumnName="N_CONSULT_QUANTITY" />
+                <ScalarProperty Name="N_CONSULT_TIME" ColumnName="N_CONSULT_TIME" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+              <MappingFragment StoreEntitySet="TRN_SERVICE_X_ACTIVITY_TYPE_TB">
+                <ScalarProperty Name="N_SERVICE_X_ACTIVITY_TYPE_SYSID" ColumnName="N_SERVICE_X_ACTIVITY_TYPE_SYSID" />
+                <ScalarProperty Name="N_SERVICE_SYSID" ColumnName="N_SERVICE_SYSID" />
+                <ScalarProperty Name="N_ACTIVITY_TYPE_SYSID" ColumnName="N_ACTIVITY_TYPE_SYSID" />
+                <ScalarProperty Name="N_PROGRAM_SYSID" ColumnName="N_PROGRAM_SYSID" />
+                <ScalarProperty Name="N_SUBPROGRAM_SYSID" ColumnName="N_SUBPROGRAM_SYSID" />
+                <ScalarProperty Name="N_OPTION_SYSID" ColumnName="N_OPTION_SYSID" />
+                <ScalarProperty Name="SZ_CODE" ColumnName="SZ_CODE" />
+                <ScalarProperty Name="N_TIME" ColumnName="N_TIME" />
+                <ScalarProperty Name="SZ_FIPS_CODE" ColumnName="SZ_FIPS_CODE" />
+                <ScalarProperty Name="SZ_ADDRESS" ColumnName="SZ_ADDRESS" />
+                <ScalarProperty Name="SZ_IDENTICAL_SERVICE_CODE" ColumnName="SZ_IDENTICAL_SERVICE_CODE" />
+                <ScalarProperty Name="N_TEMPORARY_ID" ColumnName="N_TEMPORARY_ID" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_PurgeActivityData" FunctionName="EH.TimeTrackWeb.Models.Store.usp_PurgeActivityData" />
+          <EntitySetMapping Name="REF_WORKER_TB">
+            <EntityTypeMapping TypeName="EH.TimeTrackWeb.Models.REF_WORKER_TB">
+              <MappingFragment StoreEntitySet="REF_WORKER_TB">
+                <ScalarProperty Name="SZ_TIMESTAMP" ColumnName="SZ_TIMESTAMP" />
+                <ScalarProperty Name="B_INACTIVE" ColumnName="B_INACTIVE" />
+                <ScalarProperty Name="DT_MODIFIED" ColumnName="DT_MODIFIED" />
+                <ScalarProperty Name="SZ_MODIFIED_BY" ColumnName="SZ_MODIFIED_BY" />
+                <ScalarProperty Name="N_WORKER_NUMBER" ColumnName="N_WORKER_NUMBER" />
+                <ScalarProperty Name="SZ_USER_NAME" ColumnName="SZ_USER_NAME" />
+                <ScalarProperty Name="N_WORKER_SYSID" ColumnName="N_WORKER_SYSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

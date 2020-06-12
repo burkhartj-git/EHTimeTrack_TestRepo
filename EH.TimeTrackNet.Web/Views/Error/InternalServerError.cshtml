@@ -1,0 +1,31 @@
+﻿@model EH.TimeTrackNet.Web.Models.EHTT_Error
+@{
+    ViewBag.Title = "Internal Server Error";
+}
+
+@section PageStyles {
+    <link href="//assets.macombgov.org/admin/pages/css/error.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="row">
+    <div class="col-md-6 page-500" float:left>
+        <div class=" number">
+            500
+        </div>
+        <div class=" details">
+            <p>
+                We are fixing it!<br />
+                Please come back in a while.<br /><br />
+            </p>                   
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Oops! Something went wrong.</h3><br />
+        <h3>Error Message:</h3><br />
+        <h4><b>@Html.TextAreaFor(model => model.EHTT_ErrorMessage, new { style = "width: 500px; height: 300px;" })</b></h4><br />
+    </div>
+</div>
+    <!-- END PAGE CONTENT -->

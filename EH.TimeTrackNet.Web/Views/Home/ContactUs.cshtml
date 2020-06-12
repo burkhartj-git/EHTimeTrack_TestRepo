@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="row margin-bottom-20">
+            <div class="col-md-6">
+                <h3 class="form-section">@ViewBag.HeaderText</h3>
+                @Html.Raw(ViewBag.BodyHtml)
+                @if (!string.IsNullOrEmpty(ViewBag.AddressHtml) || !string.IsNullOrEmpty(ViewBag.PhoneHtml) || !string.IsNullOrEmpty(ViewBag.EmailHtml) || !string.IsNullOrEmpty(ViewBag.HasSocialMedia))
+                {
+                    <div class="well">
+                        @if (!string.IsNullOrEmpty(ViewBag.AddressHtml))
+                        {
+                            <h4>Address</h4>
+                            <address>
+                                @Html.Raw(ViewBag.AddressHtml)
+                            </address>
+                        }
+                        @if (!string.IsNullOrEmpty(ViewBag.PhoneHtml))
+                        {
+                            <h4>Phone</h4>
+                            <address>
+                                @Html.Raw(ViewBag.PhoneHtml)
+                            </address>
+                        }
+                        @if (!string.IsNullOrEmpty(ViewBag.EmailHtml))
+                        {
+                            <h4>Email</h4>
+                            <address>
+                                @Html.Raw(ViewBag.EmailHtml)
+                            </address>
+                        }
+                        <ul class="social-icons margin-bottom-10">
+                            @if (!string.IsNullOrEmpty(ViewBag.FacebookUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.FacebookUrl" data-original-title="facebook" class="facebook"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.TwitterUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.TwitterUrl" data-original-title="twitter" class="twitter"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.GooglePlusUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.GooglePlusUrl" data-original-title="Goole Plus" class="googleplus"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.InstagramUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.InstagramUrl" data-original-title="instagram" class="instagram"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.YouTubeUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.YouTubeUrl" data-original-title="youtube" class="youtube"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.LinkedInUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.LinkedInUrl" data-original-title="linkedin" class="linkedin"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.SkypeUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.SkypeUrl" data-original-title="skype" class="skype"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.RssUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.RssUrl" data-original-title="rss" class="rss"></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(ViewBag.GitHubUrl))
+                            {
+                                <li>
+                                    <a href="@ViewBag.GitHubUrl" data-original-title="github" class="github"></a>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                }
+            </div>
+            <div class="col-md-6">
+                <div class="space20">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT-->

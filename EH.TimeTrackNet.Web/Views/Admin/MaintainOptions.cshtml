@@ -1,0 +1,88 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model MaintainOptionsViewModel
+@{
+    ViewBag.Title = "Maintain Options";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="row">
+        @if (Model.ShowEditMessage == true)
+        {
+            <div class='col-md-12'><h2 style='color:red'>@Html.DisplayFor(m => m.EditMessage)</h2></div>
+        }
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-edit"></i>Option
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    @using (Html.BeginForm("InsertOptionsSubmitSelected", "Admin", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+                    {
+                        <div class="table-toolbar">
+                            <div class="btn-group">
+                                <button id="sample_editable_1_new" class="btn blue">
+                                    Add New <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    @using (Html.BeginForm("MaintainOptionsSubmitSelected", "Admin", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+                    {
+                        <button type="submit" class="btn blue" value="Edit" name="Action">Edit</button>
+                        <button type="submit" class="btn blue" value="Delete" name="Action">Delete</button>
+                        <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Select
+                                    </th>
+                                    <th>
+                                        Option Number
+                                    </th>
+                                    <th>
+                                        Option Description
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="options">
+                                @Html.EditorFor(model => model.Option)
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+    @section PageLevelScripts {
+        <script>
+        $(document).ready(function () {
+            $("#options").find(":checkbox").click(function () {
+                $("#options :checkbox").parent().removeClass("checked");
+                $("#options :checkbox").prop("checked", false);
+                if ($(this).prop("checked") == false) {
+                    $(this).parent().addClass("checked");
+                    $(this).prop("checked", true);
+                }
+            })
+        })
+        </script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

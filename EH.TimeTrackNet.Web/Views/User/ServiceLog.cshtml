@@ -1,0 +1,82 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model ServiceLogViewModel
+@{
+    ViewBag.Title = "Service Log";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" type="text/css" />
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="form-body">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-md-2">Worker Name <span class="required"> * </span></label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.SelectedWorker, Model.Workers)
+                        <span style="color:red">@Html.ValidationMessageFor(model => model.SelectedWorker)</span>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="row">
+                    <label class="control-label col-md-2">Service Date <span class="required"> * </span></label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.ServiceDate, new { @class = "datepicker" })
+                        <span style="color:red">@Html.ValidationMessageFor(model => model.ServiceDate)</span>
+                        @if (Model.ShowDateMessage)
+                        {
+                            <span style="color:red">@Html.DisplayFor(model => model.DateValidationMessage)</span>
+                        }
+                        <span class="help-block">
+                            Enter Date as mm/dd/yyyy
+                        </span>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn blue">Enter</button>
+                        <button type="button" class="btn blue" id="clear">Clear Fields</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    }
+    @section PageLevelScripts {    
+        <script>
+            $(function () {
+                $.datepicker.setDefaults(
+                    $.extend($.datepicker.regional[''])
+                );
+                $(".datepicker").datepicker();
+                //$(".datepicker").datepicker("setDate", new Date);
+            });
+
+            $(document).ready(function () {
+                $("#clear").on('click', function () {
+                    var dd = document.getElementById('SelectedWorker');
+                    dd.selectedIndex = 0;
+                    $("#ServiceDate").val("");
+                })
+            })
+        </script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

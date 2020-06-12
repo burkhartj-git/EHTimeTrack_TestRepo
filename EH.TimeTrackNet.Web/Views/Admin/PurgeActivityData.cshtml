@@ -1,0 +1,112 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model PurgeActivityDataViewModel
+@{
+    ViewBag.Title = "Purge Activity Data";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" type="text/css" />
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="form-body">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-md-3">Purge Through Date <span class="required"> * </span></label>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.PurgeDate, new { @class = "datepicker", id = "purgeDate" })
+                        <span style="color:red">@Html.ValidationMessageFor(model => model.PurgeDate)</span>
+                        <span class="help-block">
+                            Enter Date as mm/dd/yyyy
+                        </span>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn blue" id="purge">Purge Activity Data</button>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row" id="ajaxImage">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <span><img src="~/Content/Images/ajax-loader.gif" /></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @section PageLevelScripts {
+        <script>
+            $().ready(function () {
+                $("#ajaxImage").hide();
+                $.ajaxSetup({ cache: false });
+            })
+            $(function () {
+                $.datepicker.setDefaults(
+                    $.extend($.datepicker.regional[''])
+                );
+                $(".datepicker").datepicker();
+                //$(".datepicker").datepicker("setDate", new Date);
+            });
+            $("#purge").on('click', function () {
+                var isValid = false;
+                var message = "Please enter a valid Purge Date that is more than four years old";
+                isValid = ValidatePurgeDate();
+                if (!isValid) {
+                    ShowMessage(message);
+                    return;
+                }
+                var answer = confirm("Are you sure you want to purge all activities? This action could take some time to complete.");
+                if (answer) {
+                    $("#ajaxImage").show();
+                    PurgeActivityData($("#purgeDate").val().toString());
+                }
+            })
+            function ValidatePurgeDate() {
+                var purgeDate = $("#purgeDate").val();
+                if (isDate(purgeDate)) {
+                    var dPurge = new Date(purgeDate);
+                    var dNow = new Date(Date.now());
+                    var milliSec = dNow - dPurge;
+                    var milliSecPerYear = 1000 * 60 * 60 * 24 * 365.242199;
+                    var yearsDiff = milliSec / milliSecPerYear;
+                    if (yearsDiff < 4) {
+                        return false;
+                    }
+                }
+                else {
+                    return false;
+                }
+                return true;
+            }
+            function PurgeActivityData(purgeDate) {
+                var url = "@Url.Action("PurgeActivityDataByDate", "Admin")?PurgeDate=" + purgeDate;
+                window.location.href = url;
+            }
+            function isDate(val) {
+                var d = new Date(val);
+                return !isNaN(d.valueOf());
+            }
+            function ShowMessage(message) {
+                alert(message);
+            }
+        </script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

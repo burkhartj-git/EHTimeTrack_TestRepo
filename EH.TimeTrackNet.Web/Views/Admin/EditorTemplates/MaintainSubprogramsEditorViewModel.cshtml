@@ -1,0 +1,16 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model MaintainSubprogramsEditorViewModel
+<tr>
+    <td style="text-align:center">
+        @Html.CheckBoxFor(model => model.Selected)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Code)
+        @Html.HiddenFor(model => model.Code)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Description)
+        @Html.HiddenFor(model => model.Description)
+        @Html.HiddenFor(model => model.Id)
+    </td>
+</tr>

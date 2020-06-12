@@ -1,0 +1,76 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model DeleteSamplesViewModel
+@{
+    ViewBag.Title = "Delete Samples";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="row">
+        @if (Model.ShowMessage == true)
+        {
+            <div class='col-md-12'><h2 style='color:red'>@Html.DisplayFor(m => m.Message)</h2></div>
+        }
+    </div>
+    <br />
+    <br />
+    @using (Html.BeginForm("DeleteSample", "Admin", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+    {
+        @Html.ValidationSummary(true)
+        <div class="form-body">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-md-2">Sample Number</label>
+                    <div class="col-md-8">
+                        @Html.DisplayFor(m => m.Code)
+                    </div>
+                    @Html.HiddenFor(m => m.Code)
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <br />
+                <div class="row">
+                    <label class="control-label col-md-2">Sample Description <span class="required"> * </span></label>
+                    <div class="col-md-8">
+                        @Html.DisplayFor(m => m.Description)
+                    </div>
+                    @Html.HiddenFor(m => m.Description)
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div>
+                    @Html.HiddenFor(m => m.Id)
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn blue">Delete</button>
+                        <button type="button" class="btn blue" id="cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @section PageLevelScripts {
+        <script>
+            $(document).ready(function () {
+                $("#cancel").on('click', function () {
+                    var url = '@Url.Action("MaintainSamples", "Admin")';
+                    window.location.href = url;
+                })
+            })
+        </script>
+    }
+</body>
+
+</html>
+<!-- END PAGE CONTENT -->

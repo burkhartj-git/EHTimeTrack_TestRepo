@@ -1,0 +1,243 @@
+﻿@{
+    string cdnAssetsUrl = string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Cdn.Assets.Url"]) ? "https://assets.macombgov.org" : System.Configuration.ConfigurationManager.AppSettings["Cdn.Assets.Url"];
+    string sideBarClosedBodyCss = EH.TimeTrackNet.Web.Utilities.SessionHelper.SideBarClosed == "1" ? "page-sidebar-closed" : "";
+    string sideBarClosedCss = EH.TimeTrackNet.Web.Utilities.SessionHelper.SideBarClosed == "1" ? "page-sidebar-menu-closed" : "";
+}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head> 
+    <meta charset="utf-8" />
+    <title>Macomb County Health Department : Time Track Management System | @ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/global/plugins/uniform/css/uniform.default.min.css" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    @RenderSection("PageLevelPluginStyles", required: false)
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+    <!-- BEGIN PAGE STYLES -->
+    @RenderSection("PageStyles", required: false)
+    <!-- END PAGE STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="@cdnAssetsUrl/global/css/components.min.css" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/admin/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="@cdnAssetsUrl/admin/layout/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="@cdnAssetsUrl/macomb/css/macomb.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME STYLES -->
+    <!--Fav Icons-->
+    <link rel="shortcut icon" href="@cdnAssetsUrl/macomb/img/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="@cdnAssetsUrl/macomb/img/favicons/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="@cdnAssetsUrl/macomb/img/favicons/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="@cdnAssetsUrl/macomb/img/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="@cdnAssetsUrl/macomb/img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="@cdnAssetsUrl/macomb/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="@cdnAssetsUrl/macomb/img/favicons/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#2b8abf">
+    <meta name="msapplication-TileImage" content="@cdnAssetsUrl/macomb/img/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="@cdnAssetsUrl/macomb/img/favicons/browserconfig.xml">
+    <!--End Fav Icons-->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed page-quick-sidebar-over-content @sideBarClosedBodyCss">
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo mac-page-logo">
+                <a href="~/Home/Index">
+                    <img src="@cdnAssetsUrl/macomb/img/macomb-county-icon-18x18.png" alt="logo" class="navbar-brand" />
+                    <span class="navbar-brand text-logo mac-navbar-title">@System.Configuration.ConfigurationManager.AppSettings["Application.DisplayName"]</span>
+                </a>
+                <div class="menu-toggler sidebar-toggler hide">
+                    <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                </div>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN USER DROPDOWN -->
+                    @Html.Partial("_LoginPartial")
+                    <!-- END USER DROPDOWN -->
+                    <!-- BEGIN INBOX DROPDOWN -->
+                    @if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Application.InboxDropdown.Displayed"]) && System.Configuration.ConfigurationManager.AppSettings["Application.InboxDropdown.Displayed"].ToLower() != "false")
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="fa fa-building"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Application.Help.Defined"]) && System.Configuration.ConfigurationManager.AppSettings["Application.Help.Defined"].ToLower() != "false")
+                                {
+                                    <li>
+                                        <a href="~/Home/Help">
+                                            <i class="fa fa-question"></i> Help
+                                        </a>
+                                    </li>
+                                }
+                                @if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Application.About.Defined"]) && System.Configuration.ConfigurationManager.AppSettings["Application.About.Defined"].ToLower() != "false")
+                                {
+                                    <li>
+                                        <a href="~/Home/About">
+                                            <i class="fa fa-adn"></i> About
+                                        </a>
+                                    </li>
+                                }
+                                @if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Application.Contact.Defined"]) && System.Configuration.ConfigurationManager.AppSettings["Application.Contact.Defined"].ToLower() != "false")
+                                {
+                                    <li>
+                                        <a href="~/Home/ContactUs">
+                                            <i class="fa fa-support"></i> Contact Us
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    <!-- END INBOX DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <div class="clearfix">
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+            <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+            <div class="page-sidebar navbar-collapse collapse">
+                <!-- BEGIN SIDEBAR MENU -->
+                <ul class="page-sidebar-menu @sideBarClosedCss" data-auto-scroll="true" data-slide-speed="200">
+                    <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                    <li class="sidebar-toggler-wrapper">
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <div class="sidebar-toggler">
+                        </div>
+                        <!-- END SIDEBAR TOGGLER BUTTON -->
+                </ul>
+            </div>
+                <!-- END SIDEBAR MENU -->
+            
+            <!-- END SIDEBAR -->    
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <div class="row">
+                        <span><img src="~/Content/Images/header.gif" /></span>
+                        <br />
+                        <br />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                            <h3 class="page-title">
+                                @ViewBag.Title
+                            </h3>
+                            <ul class="page-breadcrumb breadcrumb"></ul>
+                            <!-- END PAGE TITLE & BREADCRUMB-->
+                        </div>
+                    </div>
+                    <!-- END PAGE HEADER-->
+                    <!-- BEGIN PAGE CONTENT-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            @RenderBody()
+                        </div>
+                    </div>
+                    <!-- END PAGE CONTENT-->
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>    
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            &copy; @DateTime.Now.Year Macomb County, MI
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="//www.macombgov.org/privacypolicy.htm" class="mac-footer-privacypolicy" target="_blank">
+                Terms of Use/Privacy Policy
+            </a>
+        </div>
+        <div class="page-footer-tools">
+            <span class="go-top">
+                <i class="fa fa-angle-up"></i>
+            </span>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    </div>
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <!--[if lt IE 9]>
+    <script src="@cdnAssetsUrl/global/plugins/respond.min.js"></script>
+    <script src="@cdnAssetsUrl/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="@cdnAssetsUrl/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="@cdnAssetsUrl/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @RenderSection("PageLevelPluginsScripts", required: false)
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="@cdnAssetsUrl/global/scripts/metronic.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/macomb/scripts/macomb-global.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/admin/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="@cdnAssetsUrl/macomb/scripts/macomb.js" type="text/javascript"></script>
+    @RenderSection("PageLevelScripts", required: false)
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core componets
+            Layout.init(); // init layout
+            Macomb.init();
+        });
+    </script>
+    @RenderSection("PageLevelScriptInits", required: false)
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

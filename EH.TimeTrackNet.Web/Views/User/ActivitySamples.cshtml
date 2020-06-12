@@ -1,0 +1,188 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model ActivitySamplesViewModel
+@{
+    ViewBag.Title = "Activity Samples";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-md-6">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Service Log
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Worker Name
+                                    </th>
+                                    <th>
+                                        Service Date
+                                    </th>
+                                    <th>
+                                        Mileage Time
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => m.WorkerName)
+                                        @Html.HiddenFor(m => m.ServiceLogID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ServiceDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.MileageTime)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Daily Activity Log
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Address
+                                    </th>
+                                    <th>
+                                        Civil Division
+                                    </th>
+                                    <th>
+                                        Activity
+                                    </th>
+                                    <th>
+                                        Option
+                                    </th>
+                                    <th>
+                                        Program
+                                    </th>
+                                    <th>
+                                        Subprogram
+                                    </th>
+                                    <th>
+                                        Time
+                                    </th>
+                                    <th>
+                                        Identical
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Address)
+                                        @Html.HiddenFor(m => m.ActivityLogID)
+                                        @Html.HiddenFor(m => m.SampleLogID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.CivilDivision)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Activity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Option)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Program)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Subprogram)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ActivityTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Identical)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="form-body">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-md-3">Sample Type <span class="required"> * </span></label>
+                    <label class="control-label col-md-3">Qty <span class="required"> * </span></label>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.SelectedSampleType, Model.SampleTypes)
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.Quantity)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Quantity)</span>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn blue">Save</button>
+                        <button type="button" class="btn blue" id="back">Back to Activity</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @section PageLevelScripts {
+        <script>
+    $('#back').click(function () {
+        RenderActivityView();
+    })
+    function RenderActivityView() {
+        var log = @Html.Raw(Model.ServiceLogID.ToString());
+        var activity = @Html.Raw(Model.ActivityLogID.ToString());
+        var url = "@Url.Action("RedirectDailyActivityLog", "User")?serviceLogID=" + log + "&SelectedActivity=" + activity;
+        window.location.href = url;
+    }
+</script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

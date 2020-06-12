@@ -1,0 +1,78 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model EditWorkersViewModel
+@{
+    ViewBag.Title = "Edit / New Workers";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm("EditWorkersSubmitSelected", "Admin", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+    {
+        @Html.ValidationSummary(true)
+        <div class="form-body">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-md-2">User Name <span class="required"> * </span></label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.UserName)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.UserName)</span>
+                    </div>
+                    @Html.HiddenFor(m => m.UserName)
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <br />
+                <div class="row">
+                    <label class="control-label col-md-2">Worker Number <span class="required"> * </span></label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.WorkerNumber)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.WorkerNumber)</span>
+                        @if (Model.ShowMessageDescription == true)
+                        {
+                            <span style="color:red">@Html.DisplayFor(m => m.ValidationMessage)</span>
+                        }
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div>
+                    @Html.HiddenFor(m => m.Id)
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn blue">Save</button>
+                        <button type="button" class="btn blue" id="back">Back</button>
+                        <button type="button" class="btn blue" id="clear">Clear Fields</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @section PageLevelScripts {
+        <script>
+            $(document).ready(function () {
+                $("#back").on('click', function () {
+                    var url = '@Url.Action("MaintainWorkers", "Admin")';
+                    window.location.href = url;
+                })
+
+                $("#clear").on('click', function () {
+                    $("#UserName").val("");
+                    $("#WorkerNumber").val("");
+                })
+            })
+        </script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

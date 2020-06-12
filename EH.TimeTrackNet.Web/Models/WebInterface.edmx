@@ -1,0 +1,936 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MC.WebInterfaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetApplicationRolePermissions">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="ApplicationId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PermissionId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetApplications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetApplicationUserRoles">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetPermissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ViewPublished" Type="bit" Nullable="false" />
+          <Property Name="ViewOwn" Type="bit" Nullable="false" />
+          <Property Name="ViewAll" Type="bit" Nullable="false" />
+          <Property Name="AddNew" Type="bit" Nullable="false" />
+          <Property Name="EditOwn" Type="bit" Nullable="false" />
+          <Property Name="EditAll" Type="bit" Nullable="false" />
+          <Property Name="DeleteOwn" Type="bit" Nullable="false" />
+          <Property Name="DeleteAll" Type="bit" Nullable="false" />
+          <Property Name="ExpungeOwn" Type="bit" Nullable="false" />
+          <Property Name="ExpungeAll" Type="bit" Nullable="false" />
+          <Property Name="AdministerOwn" Type="bit" Nullable="false" />
+          <Property Name="AdministerAll" Type="bit" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetSitemapNodes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SitemapId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PermissionId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ParentNodeId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Href" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" MaxLength="256" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" />
+          <Property Name="Target" Type="nvarchar" MaxLength="256" />
+          <Property Name="Text" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetSitemaps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ApplicationId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AspNetApplicationRolePermissions_AspNetApplications">
+          <End Role="AspNetApplications" Type="Self.AspNetApplications" Multiplicity="1" />
+          <End Role="AspNetApplicationRolePermissions" Type="Self.AspNetApplicationRolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetApplications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationRolePermissions">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationRolePermissions_AspNetPermissions">
+          <End Role="AspNetPermissions" Type="Self.AspNetPermissions" Multiplicity="1" />
+          <End Role="AspNetApplicationRolePermissions" Type="Self.AspNetApplicationRolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetPermissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationRolePermissions">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationRolePermissions_AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetApplicationRolePermissions" Type="Self.AspNetApplicationRolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationRolePermissions">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationUserRoles_AspNetApplications">
+          <End Role="AspNetApplications" Type="Self.AspNetApplications" Multiplicity="1" />
+          <End Role="AspNetApplicationUserRoles" Type="Self.AspNetApplicationUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetApplications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationUserRoles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationUserRoles_AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetApplicationUserRoles" Type="Self.AspNetApplicationUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationUserRoles_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetApplicationUserRoles" Type="Self.AspNetApplicationUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemapNodes_AspNetPermissions">
+          <End Role="AspNetPermissions" Type="Self.AspNetPermissions" Multiplicity="0..1" />
+          <End Role="AspNetSitemapNodes" Type="Self.AspNetSitemapNodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetPermissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemapNodes">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemapNodes_AspNetSitemapNodes">
+          <End Role="AspNetSitemapNodes" Type="Self.AspNetSitemapNodes" Multiplicity="0..1" />
+          <End Role="AspNetSitemapNodes1" Type="Self.AspNetSitemapNodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetSitemapNodes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemapNodes1">
+              <PropertyRef Name="ParentNodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemapNodes_AspNetSitemaps">
+          <End Role="AspNetSitemaps" Type="Self.AspNetSitemaps" Multiplicity="1" />
+          <End Role="AspNetSitemapNodes" Type="Self.AspNetSitemapNodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetSitemaps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemapNodes">
+              <PropertyRef Name="SitemapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemaps_AspNetApplications">
+          <End Role="AspNetApplications" Type="Self.AspNetApplications" Multiplicity="1" />
+          <End Role="AspNetSitemaps" Type="Self.AspNetSitemaps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetApplications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemaps">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MCWebInterfaceModelStoreContainer">
+          <EntitySet Name="AspNetApplicationRolePermissions" EntityType="Self.AspNetApplicationRolePermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetApplications" EntityType="Self.AspNetApplications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetApplicationUserRoles" EntityType="Self.AspNetApplicationUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetPermissions" EntityType="Self.AspNetPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetSitemapNodes" EntityType="Self.AspNetSitemapNodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetSitemaps" EntityType="Self.AspNetSitemaps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetApplicationRolePermissions_AspNetApplications" Association="Self.FK_AspNetApplicationRolePermissions_AspNetApplications">
+            <End Role="AspNetApplications" EntitySet="AspNetApplications" />
+            <End Role="AspNetApplicationRolePermissions" EntitySet="AspNetApplicationRolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationRolePermissions_AspNetPermissions" Association="Self.FK_AspNetApplicationRolePermissions_AspNetPermissions">
+            <End Role="AspNetPermissions" EntitySet="AspNetPermissions" />
+            <End Role="AspNetApplicationRolePermissions" EntitySet="AspNetApplicationRolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationRolePermissions_AspNetRoles" Association="Self.FK_AspNetApplicationRolePermissions_AspNetRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetApplicationRolePermissions" EntitySet="AspNetApplicationRolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationUserRoles_AspNetApplications" Association="Self.FK_AspNetApplicationUserRoles_AspNetApplications">
+            <End Role="AspNetApplications" EntitySet="AspNetApplications" />
+            <End Role="AspNetApplicationUserRoles" EntitySet="AspNetApplicationUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationUserRoles_AspNetRoles" Association="Self.FK_AspNetApplicationUserRoles_AspNetRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetApplicationUserRoles" EntitySet="AspNetApplicationUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationUserRoles_AspNetUsers" Association="Self.FK_AspNetApplicationUserRoles_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetApplicationUserRoles" EntitySet="AspNetApplicationUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemapNodes_AspNetPermissions" Association="Self.FK_AspNetSitemapNodes_AspNetPermissions">
+            <End Role="AspNetPermissions" EntitySet="AspNetPermissions" />
+            <End Role="AspNetSitemapNodes" EntitySet="AspNetSitemapNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemapNodes_AspNetSitemapNodes" Association="Self.FK_AspNetSitemapNodes_AspNetSitemapNodes">
+            <End Role="AspNetSitemapNodes" EntitySet="AspNetSitemapNodes" />
+            <End Role="AspNetSitemapNodes1" EntitySet="AspNetSitemapNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemapNodes_AspNetSitemaps" Association="Self.FK_AspNetSitemapNodes_AspNetSitemaps">
+            <End Role="AspNetSitemaps" EntitySet="AspNetSitemaps" />
+            <End Role="AspNetSitemapNodes" EntitySet="AspNetSitemapNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemaps_AspNetApplications" Association="Self.FK_AspNetSitemaps_AspNetApplications">
+            <End Role="AspNetApplications" EntitySet="AspNetApplications" />
+            <End Role="AspNetSitemaps" EntitySet="AspNetSitemaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MC.WebInterfaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetApplicationRolePermission">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="ApplicationId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PermissionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetApplication" Relationship="Self.FK_AspNetApplicationRolePermissions_AspNetApplications" FromRole="AspNetApplicationRolePermissions" ToRole="AspNetApplications" />
+          <NavigationProperty Name="AspNetPermission" Relationship="Self.FK_AspNetApplicationRolePermissions_AspNetPermissions" FromRole="AspNetApplicationRolePermissions" ToRole="AspNetPermissions" />
+          <NavigationProperty Name="AspNetRole" Relationship="Self.FK_AspNetApplicationRolePermissions_AspNetRoles" FromRole="AspNetApplicationRolePermissions" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="AspNetApplication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetApplicationRolePermissions" Relationship="Self.FK_AspNetApplicationRolePermissions_AspNetApplications" FromRole="AspNetApplications" ToRole="AspNetApplicationRolePermissions" />
+          <NavigationProperty Name="AspNetApplicationUserRoles" Relationship="Self.FK_AspNetApplicationUserRoles_AspNetApplications" FromRole="AspNetApplications" ToRole="AspNetApplicationUserRoles" />
+          <NavigationProperty Name="AspNetSitemaps" Relationship="Self.FK_AspNetSitemaps_AspNetApplications" FromRole="AspNetApplications" ToRole="AspNetSitemaps" />
+        </EntityType>
+        <EntityType Name="AspNetApplicationUserRole">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetApplication" Relationship="Self.FK_AspNetApplicationUserRoles_AspNetApplications" FromRole="AspNetApplicationUserRoles" ToRole="AspNetApplications" />
+          <NavigationProperty Name="AspNetRole" Relationship="Self.FK_AspNetApplicationUserRoles_AspNetRoles" FromRole="AspNetApplicationUserRoles" ToRole="AspNetRoles" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetApplicationUserRoles_AspNetUsers" FromRole="AspNetApplicationUserRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ViewPublished" Type="Boolean" Nullable="false" />
+          <Property Name="ViewOwn" Type="Boolean" Nullable="false" />
+          <Property Name="ViewAll" Type="Boolean" Nullable="false" />
+          <Property Name="AddNew" Type="Boolean" Nullable="false" />
+          <Property Name="EditOwn" Type="Boolean" Nullable="false" />
+          <Property Name="EditAll" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteOwn" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteAll" Type="Boolean" Nullable="false" />
+          <Property Name="ExpungeOwn" Type="Boolean" Nullable="false" />
+          <Property Name="ExpungeAll" Type="Boolean" Nullable="false" />
+          <Property Name="AdministerOwn" Type="Boolean" Nullable="false" />
+          <Property Name="AdministerAll" Type="Boolean" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetApplicationRolePermissions" Relationship="Self.FK_AspNetApplicationRolePermissions_AspNetPermissions" FromRole="AspNetPermissions" ToRole="AspNetApplicationRolePermissions" />
+          <NavigationProperty Name="AspNetSitemapNodes" Relationship="Self.FK_AspNetSitemapNodes_AspNetPermissions" FromRole="AspNetPermissions" ToRole="AspNetSitemapNodes" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetApplicationRolePermissions" Relationship="Self.FK_AspNetApplicationRolePermissions_AspNetRoles" FromRole="AspNetRoles" ToRole="AspNetApplicationRolePermissions" />
+          <NavigationProperty Name="AspNetApplicationUserRoles" Relationship="Self.FK_AspNetApplicationUserRoles_AspNetRoles" FromRole="AspNetRoles" ToRole="AspNetApplicationUserRoles" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetSitemapNode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SitemapId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PermissionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ParentNodeId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Href" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Target" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetPermission" Relationship="Self.FK_AspNetSitemapNodes_AspNetPermissions" FromRole="AspNetSitemapNodes" ToRole="AspNetPermissions" />
+          <NavigationProperty Name="AspNetSitemapNodes1" Relationship="Self.FK_AspNetSitemapNodes_AspNetSitemapNodes" FromRole="AspNetSitemapNodes" ToRole="AspNetSitemapNodes1" />
+          <NavigationProperty Name="AspNetSitemapNode1" Relationship="Self.FK_AspNetSitemapNodes_AspNetSitemapNodes" FromRole="AspNetSitemapNodes1" ToRole="AspNetSitemapNodes" />
+          <NavigationProperty Name="AspNetSitemap" Relationship="Self.FK_AspNetSitemapNodes_AspNetSitemaps" FromRole="AspNetSitemapNodes" ToRole="AspNetSitemaps" />
+        </EntityType>
+        <EntityType Name="AspNetSitemap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetApplication" Relationship="Self.FK_AspNetSitemaps_AspNetApplications" FromRole="AspNetSitemaps" ToRole="AspNetApplications" />
+          <NavigationProperty Name="AspNetSitemapNodes" Relationship="Self.FK_AspNetSitemapNodes_AspNetSitemaps" FromRole="AspNetSitemaps" ToRole="AspNetSitemapNodes" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetApplicationUserRoles" Relationship="Self.FK_AspNetApplicationUserRoles_AspNetUsers" FromRole="AspNetUsers" ToRole="AspNetApplicationUserRoles" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <Association Name="FK_AspNetApplicationRolePermissions_AspNetApplications">
+          <End Role="AspNetApplications" Type="Self.AspNetApplication" Multiplicity="1" />
+          <End Role="AspNetApplicationRolePermissions" Type="Self.AspNetApplicationRolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetApplications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationRolePermissions">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationRolePermissions_AspNetPermissions">
+          <End Role="AspNetPermissions" Type="Self.AspNetPermission" Multiplicity="1" />
+          <End Role="AspNetApplicationRolePermissions" Type="Self.AspNetApplicationRolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetPermissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationRolePermissions">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationRolePermissions_AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1" />
+          <End Role="AspNetApplicationRolePermissions" Type="Self.AspNetApplicationRolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationRolePermissions">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationUserRoles_AspNetApplications">
+          <End Role="AspNetApplications" Type="Self.AspNetApplication" Multiplicity="1" />
+          <End Role="AspNetApplicationUserRoles" Type="Self.AspNetApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetApplications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationUserRoles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemaps_AspNetApplications">
+          <End Role="AspNetApplications" Type="Self.AspNetApplication" Multiplicity="1" />
+          <End Role="AspNetSitemaps" Type="Self.AspNetSitemap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetApplications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemaps">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationUserRoles_AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1" />
+          <End Role="AspNetApplicationUserRoles" Type="Self.AspNetApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetApplicationUserRoles_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="AspNetApplicationUserRoles" Type="Self.AspNetApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetApplicationUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemapNodes_AspNetPermissions">
+          <End Role="AspNetPermissions" Type="Self.AspNetPermission" Multiplicity="0..1" />
+          <End Role="AspNetSitemapNodes" Type="Self.AspNetSitemapNode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetPermissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemapNodes">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemapNodes_AspNetSitemapNodes">
+          <End Role="AspNetSitemapNodes" Type="Self.AspNetSitemapNode" Multiplicity="0..1" />
+          <End Role="AspNetSitemapNodes1" Type="Self.AspNetSitemapNode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetSitemapNodes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemapNodes1">
+              <PropertyRef Name="ParentNodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetSitemapNodes_AspNetSitemaps">
+          <End Role="AspNetSitemaps" Type="Self.AspNetSitemap" Multiplicity="1" />
+          <End Role="AspNetSitemapNodes" Type="Self.AspNetSitemapNode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetSitemaps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetSitemapNodes">
+              <PropertyRef Name="SitemapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RoleProviderSqlEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetApplicationRolePermissions" EntityType="Self.AspNetApplicationRolePermission" />
+          <EntitySet Name="AspNetApplications" EntityType="Self.AspNetApplication" />
+          <EntitySet Name="AspNetApplicationUserRoles" EntityType="Self.AspNetApplicationUserRole" />
+          <EntitySet Name="AspNetPermissions" EntityType="Self.AspNetPermission" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetSitemapNodes" EntityType="Self.AspNetSitemapNode" />
+          <EntitySet Name="AspNetSitemaps" EntityType="Self.AspNetSitemap" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <AssociationSet Name="FK_AspNetApplicationRolePermissions_AspNetApplications" Association="Self.FK_AspNetApplicationRolePermissions_AspNetApplications">
+            <End Role="AspNetApplications" EntitySet="AspNetApplications" />
+            <End Role="AspNetApplicationRolePermissions" EntitySet="AspNetApplicationRolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationRolePermissions_AspNetPermissions" Association="Self.FK_AspNetApplicationRolePermissions_AspNetPermissions">
+            <End Role="AspNetPermissions" EntitySet="AspNetPermissions" />
+            <End Role="AspNetApplicationRolePermissions" EntitySet="AspNetApplicationRolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationRolePermissions_AspNetRoles" Association="Self.FK_AspNetApplicationRolePermissions_AspNetRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetApplicationRolePermissions" EntitySet="AspNetApplicationRolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationUserRoles_AspNetApplications" Association="Self.FK_AspNetApplicationUserRoles_AspNetApplications">
+            <End Role="AspNetApplications" EntitySet="AspNetApplications" />
+            <End Role="AspNetApplicationUserRoles" EntitySet="AspNetApplicationUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemaps_AspNetApplications" Association="Self.FK_AspNetSitemaps_AspNetApplications">
+            <End Role="AspNetApplications" EntitySet="AspNetApplications" />
+            <End Role="AspNetSitemaps" EntitySet="AspNetSitemaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationUserRoles_AspNetRoles" Association="Self.FK_AspNetApplicationUserRoles_AspNetRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetApplicationUserRoles" EntitySet="AspNetApplicationUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetApplicationUserRoles_AspNetUsers" Association="Self.FK_AspNetApplicationUserRoles_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetApplicationUserRoles" EntitySet="AspNetApplicationUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemapNodes_AspNetPermissions" Association="Self.FK_AspNetSitemapNodes_AspNetPermissions">
+            <End Role="AspNetPermissions" EntitySet="AspNetPermissions" />
+            <End Role="AspNetSitemapNodes" EntitySet="AspNetSitemapNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemapNodes_AspNetSitemapNodes" Association="Self.FK_AspNetSitemapNodes_AspNetSitemapNodes">
+            <End Role="AspNetSitemapNodes" EntitySet="AspNetSitemapNodes" />
+            <End Role="AspNetSitemapNodes1" EntitySet="AspNetSitemapNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetSitemapNodes_AspNetSitemaps" Association="Self.FK_AspNetSitemapNodes_AspNetSitemaps">
+            <End Role="AspNetSitemaps" EntitySet="AspNetSitemaps" />
+            <End Role="AspNetSitemapNodes" EntitySet="AspNetSitemapNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MCWebInterfaceModelStoreContainer" CdmEntityContainer="RoleProviderSqlEntities">
+          <EntitySetMapping Name="AspNetApplicationRolePermissions">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetApplicationRolePermission">
+              <MappingFragment StoreEntitySet="AspNetApplicationRolePermissions">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetApplications">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetApplication">
+              <MappingFragment StoreEntitySet="AspNetApplications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetApplicationUserRoles">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetApplicationUserRole">
+              <MappingFragment StoreEntitySet="AspNetApplicationUserRoles">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetPermissions">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetPermission">
+              <MappingFragment StoreEntitySet="AspNetPermissions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ViewPublished" ColumnName="ViewPublished" />
+                <ScalarProperty Name="ViewOwn" ColumnName="ViewOwn" />
+                <ScalarProperty Name="ViewAll" ColumnName="ViewAll" />
+                <ScalarProperty Name="AddNew" ColumnName="AddNew" />
+                <ScalarProperty Name="EditOwn" ColumnName="EditOwn" />
+                <ScalarProperty Name="EditAll" ColumnName="EditAll" />
+                <ScalarProperty Name="DeleteOwn" ColumnName="DeleteOwn" />
+                <ScalarProperty Name="DeleteAll" ColumnName="DeleteAll" />
+                <ScalarProperty Name="ExpungeOwn" ColumnName="ExpungeOwn" />
+                <ScalarProperty Name="ExpungeAll" ColumnName="ExpungeAll" />
+                <ScalarProperty Name="AdministerOwn" ColumnName="AdministerOwn" />
+                <ScalarProperty Name="AdministerAll" ColumnName="AdministerAll" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetSitemapNodes">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetSitemapNode">
+              <MappingFragment StoreEntitySet="AspNetSitemapNodes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SitemapId" ColumnName="SitemapId" />
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="ParentNodeId" ColumnName="ParentNodeId" />
+                <ScalarProperty Name="Href" ColumnName="Href" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetSitemaps">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetSitemap">
+              <MappingFragment StoreEntitySet="AspNetSitemaps">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="MC.WebInterfaceModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="MC.WebInterfaceModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,425 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@using EH.TimeTrackNet.Web.Utilities
+@model DailyActivityLogViewModel
+@{
+    ViewBag.Title = "Daily Activity Log";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm("PersistMileageTime", "User"))
+    {
+        @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-md-8">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Service Log
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Worker Name
+                                    </th>
+                                    <th>
+                                        Service Date
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => m.WorkerName)
+                                        @Html.HiddenFor(m => m.ServiceLogID)
+                                        @Html.HiddenFor(m => m.WorkerName)
+                                        @Html.HiddenFor(m => m.ServiceDate)
+                                        @Html.HiddenFor(m => m.SelectedActivity)
+                                        @Html.HiddenFor(m => m.SelectedSample)
+                                        @Html.HiddenFor(m => m.TotalActivityTime)
+                                        @Html.HiddenFor(m => m.TotalTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ServiceDate)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn blue" id="back">Back</button>
+            <button type="button" class="btn blue" id="cancel">Cancel</button><br /><br />            
+            <label>Mileage Time</label>                
+                @Html.TextBoxFor(m => m.MileageTime, new { id = "mileageTime" })
+                <span style="color:red">@Html.ValidationMessageFor(model => model.MileageTime)</span>
+            <button type="submit" class="btn blue">Update Mileage Time</button>
+            <br />
+            <br />
+        </div>
+    </div>
+    }
+    <div id="pageBody">
+        <div class="row">
+            <div class="col-md-4">
+                Total Activity Time: <mark>@Html.DisplayFor(m => m.TotalActivityTime)</mark>
+                <br />
+                <br />
+                Total Time: <mark>@Html.DisplayFor(m => m.TotalTime)</mark>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                <button type="button" class="btn blue" id="activity">Add New Activity</button>
+                <button type="button" class="btn blue" id="editActivity">Edit Activity</button>
+                <button type="button" class="btn blue" id="deleteActivity">Delete</button>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs"></i>Activities
+                        </div>
+                        <div class="tools">
+                            <a href="javascript:;" class="collapse">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-scrollable">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+
+                                        </th>
+                                        <th>
+                                            Address
+                                        </th>
+                                        <th>
+                                            Civil Division
+                                        </th>
+                                        <th>
+                                            Activity
+                                        </th>
+                                        <th>
+                                            Program
+                                        </th>
+                                        <th>
+                                            Sub Program
+                                        </th>
+                                        <th>
+                                            Time
+                                        </th>
+                                        <th>
+                                            Identical
+                                        </th>
+                                        <th>
+                                            Option
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="activities"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                @if (Model.IsValid == true)
+                { 
+                    <button type="button" class="btn blue" id="sample">Add New Sample</button>
+                    <button type="button" class="btn blue" id="editSample">Edit Sample</button>
+                    <button type="button" class="btn blue" id="deleteSample">Delete</button>
+                }
+                else
+                {
+                    <button type="button" class="btn blue" id="sample" disabled>Add New Sample</button>
+                    <button type="button" class="btn blue" id="editSample" disabled>Edit Sample</button>
+                    <button type="button" class="btn blue" id="deleteSample" disabled>Delete</button>
+                }
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs"></i>Samples
+                        </div>
+                        <div class="tools">
+                            <a href="javascript:;" class="collapse">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-scrollable">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+
+                                        </th>
+                                        <th>
+                                            Sample Type
+                                        </th>
+                                        <th>
+                                            Qty
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="samples"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section PageLevelScripts {
+<script>
+    $(document).ready(function () {
+        GetActivities();
+        //TestMileageTime();
+    });
+
+    $('#back').click(function () {
+        window.history.back();
+    })
+
+    $('#cancel').click(function () {
+        var answer = confirm("Are you sure you want to cancel this service log?");
+        if (answer) {
+            var url = "@Url.Action("CancelServiceLog", "User")?ServiceLogID=" + @Html.Raw(Model.ServiceLogID.ToString());
+            window.location.href = url;
+        }
+    })
+
+    function GetActivities() {
+        var serviceLogID = @Html.Raw(Model.ServiceLogID.ToString());
+        var url = '@Url.Content("~/User/GetDailyActivitiesByServiceLogID")';
+        $.ajaxSetup({ cache: false });
+        $.getJSON(url, { ServiceLogID: serviceLogID },  function(response) {
+            var row = "";
+            $.each(response, function (index, item) {
+                row += "<tr><td><input type='checkbox' id='activityCheckbox' name='" + item.DailyActivityLogID + "'" +
+                    " class='my_chkBox' /></td><td>" + item.Address + "</td><td>" + item.CivilDivision + "</td><td>" + item.Activity + "</td><td>" +
+                    item.Program + "</td><td>" + item.Subprogram + "</td><td>" + item.Time + "</td><td>" + item.Identical +
+                    "</td><td>" + item.Option + "</td></tr>";
+            })
+            $("#activities").html(row);
+            $("#activities").find(":checkbox").click(function () {
+                $("#activities").find(":checkbox").removeAttr("checked");
+                $(this).prop("checked", true);
+                var activityID = $(this).attr("name").toString();
+                GetSamples(activityID);
+            })
+            if ('@ViewBag.SelectedActivity' != 'None') {
+                var id = @ViewBag.SelectedActivity;
+                $('#activities').find(':checkbox').each(function () {
+                    if ($(this).prop("name").toString() == id) {
+                        $(this).prop('checked', true);
+                    }
+                })
+                GetSamples(id.toString());
+            }
+        });
+    }
+    function GetSamples(activityID) {
+        var url = '@Url.Content("~/User/GetSamplesByActivityID")';
+        $.ajaxSetup({ cache: false });
+        $.getJSON(url, { ActivityID: activityID }, function(response) {
+            var row = "";
+            $.each(response, function (index, item) {
+                row += "<tr><td><input type='checkbox' id='sampleCheckbox' name='" + item.SampleID + "'" +
+                    " class='my_chkBox' /></td><td>" + item.SampleType + "</td><td>" + item.Quantity + "</td></tr>";
+            });
+            $("#samples").html(row);
+            $("#samples").find(":checkbox").click(function () {
+                $("#samples").find(":checkbox").removeAttr("checked");
+                $(this).prop("checked", true);
+            })
+            if ('@ViewBag.SelectedSample' != 'None') {
+                var id = @ViewBag.SelectedSample;
+                $('#samples').find(':checkbox').each(function () {
+                    if ($(this).prop("name").toString() == id) {
+                        $(this).prop('checked', true);
+                    }
+                })
+            }
+        });
+    }
+    $('#activity').click(function () {
+        RenderActivityLogView();
+    })
+    function RenderActivityLogView() {
+        var url = "@Url.Action("Activity", "User")?ID=" + @Html.Raw(Model.ServiceLogID.ToString());
+        window.location.href = url;
+    }
+    $('#sample').click(function () {
+        var activityID = "0";
+        $("#activities").find(":checkbox").each(function () {
+            if ($(this).prop("checked") == true)
+            {
+                activityID = $(this).prop("name").toString();
+            }
+        });
+        if(!(activityID == "0"))
+        {
+            RenderActivitySampleView(activityID);
+        }
+        else
+        {
+            alert("Please select an Activity");
+        }
+    })
+    function RenderActivitySampleView(ActivityID) {
+        var url = "@Url.Action("ActivitySamples", "User")?ID=" + ActivityID;
+        window.location.href = url;
+    }
+    $("#editActivity").on('click', function () {
+        var activityLogID = "0";
+        $("#activities").find(":checkbox").each(function () {
+            if ($(this).prop("checked") == true) {
+                activityLogID = $(this).prop("name").toString();
+            }
+        })
+        if (!(activityLogID == "0")) {
+            RenderActivityView(activityLogID);
+        }
+        else {
+            ShowMessage("Please select an activity.");
+        }
+    })
+
+    $("#deleteActivity").on('click', function () {
+        var activityLogID = "0";
+        $("#activities").find(":checkbox").each(function () {
+            if ($(this).prop("checked") == true) {
+                activityLogID = $(this).prop("name").toString();
+            }
+        })
+        if (!(activityLogID == "0")) {
+            var answer = confirm("Are you sure you want to delete this activity and all associated samples?");
+            if (answer) {
+                DeleteActivity(activityLogID);
+            }
+        }
+        else {
+            ShowMessage("Please select an activity.");
+        }
+    })
+
+    $("#editSample").on('click', function () {
+        var sampleLogID = "0";
+        $("#samples").find(":checkbox").each(function () {
+            if ($(this).prop("checked") == true) {
+                sampleLogID = $(this).prop("name").toString();
+            }
+        })
+        if (!(sampleLogID == "0")) {
+            RenderSampleView(sampleLogID);
+        }
+        else {
+            ShowMessage("Please select a sample.");
+        }
+    })
+
+    $("#deleteSample").on('click', function () {
+        var sampleLogID = "0";
+        $("#samples").find(":checkbox").each(function () {
+            if ($(this).prop("checked") == true) {
+                sampleLogID = $(this).prop("name").toString();
+            }
+        })
+        if (!(sampleLogID == "0")) {
+            var answer = confirm("Are you sure you want to delete this sample?");
+            if (answer) {
+                DeleteSample(sampleLogID);
+            }
+        }
+        else {
+            ShowMessage("Please select a sample.");
+        }
+    })
+    function RenderActivityView(ActivityLogID) {
+        var url = "@Url.Action("RenderActivity", "User")?ActivityLogID=" + ActivityLogID;
+        window.location.href = url;
+    }
+
+    function DeleteActivity(ActivityLogID) {
+        var caller = "Activity";
+        var url = "@Url.Action("DeleteActivityLog", "User")?ActivityLogID=" + ActivityLogID + "&Caller=" + caller;
+        window.location.href = url;
+    }
+
+    function RenderSampleView(SampleLogID) {
+        var url = "@Url.Action("RenderSampleLog", "User")?SampleLogID=" + SampleLogID;
+        window.location.href = url;
+    }
+
+    function DeleteSample(SampleLogID) {
+        var caller = "Activity";
+        var url = "@Url.Action("DeleteSampleLog", "User")?SampleLogID=" + SampleLogID + "&Caller=" + caller;
+        window.location.href = url;
+    }
+
+    function isDate(val) {
+        var d = new Date(val);
+        return !isNaN(d.valueOf());
+    }
+
+    function ShowMessage(message) {
+        alert(message);
+    }
+
+    function TestMileageTime() {
+        var isValidated = false;
+        var val = Number(document.getElementById("mileageTime").value);
+        if (typeof val != 'number') {
+
+        }
+        else {
+            if (val > 0 && String(val).length < 4) {
+                isValidated = true;
+            }
+        }
+        TogglePageBody(isValidated);
+    }
+
+    function TogglePageBody(val) {
+        if (val == true) {
+            $("#pageBody").show();
+        }
+        else {
+            $("#pageBody").hide();
+        }
+    }
+</script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

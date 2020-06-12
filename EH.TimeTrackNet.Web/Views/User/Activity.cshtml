@@ -1,0 +1,185 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model ActivityViewModel
+@{
+    ViewBag.Title = "Activity";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-md-6">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Service Log
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Worker Name 
+                                    </th>
+                                    <th>
+                                        Service Date
+                                    </th>
+                                    <th>
+                                        Mileage Time
+                                    </th>
+                                    <th>
+                                        Total Time
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => m.WorkerName)
+                                        @Html.HiddenFor(m => m.ServiceLogID)
+                                        @Html.HiddenFor(m => m.ActivityLogID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ServiceDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.MileageTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.TotalTime)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="form-body">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-md-3">Address</label>
+                    <label class="control-label col-md-3">Civil Division <span class="required"> * </span></label>
+                    <label class="control-label col-md-3">Activity <span class="required"> * </span></label>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.TextAreaFor(m => m.Address)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Address)</span>
+                    </div>
+                    <div class="col-md-3" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Codes are no longer applicable to the Civil Divisions">
+                        @Html.DropDownListFor(m => m.SelectedCivilDivision, Model.CivilDivisions)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.SelectedActivity, Model.Activities)
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <div class="row">
+                    <label class="control-label col-md-4">Program <span class="required"> * </span></label>
+                    <label class="control-label col-md-4">Sub Program</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(m => m.SelectedProgram, Model.Programs, new { id = "programs" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(m => m.SelectedSubprogram, Model.Subprograms, new { id = "subprograms" })
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <div class="row">
+                    <label class="control-label col-md-3">Activity Time<span class="required"> * </span></label>
+                    <label class="control-label col-md-2">Identical</label>
+                    <div class="col-md-1"></div>
+                    <label class="control-label col-md-3">Option</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.ActivityTime)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.ActivityTime)</span>
+                        @if (Model.ShowActivityTimeMessage)
+                        {
+                            <span style="color:red">@Html.DisplayFor(m => m.ActivityTimeValidationMessage)</span>
+                        }
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.Identical)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Identical)</span>
+                        @if (Model.ShowIdenticalMessage)
+                        {
+                            <span style="color:red">@Html.DisplayFor(m => m.IdenticalValidationMessage)</span>
+                        }
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.SelectedOption, Model.Options)
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn blue">Save</button>
+                        <button type="button" class="btn blue" id="back">Back to Daily Activity Log</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+    @section PageLevelScripts {
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="popover"]').popover();
+                $("#programs").change(function () {
+                    UpdateSubprograms();
+                })
+                UpdateSubprograms();
+            });
+            $('#back').click(function () {
+                RenderDailyActivityLogView();
+            })
+            function RenderDailyActivityLogView() {
+                var url = "@Url.Action("RedirectDailyActivityLog", "User", new { serviceLogID = @Html.Raw(Model.ServiceLogID.ToString()) })";
+                window.location.href = url;
+            }
+            function UpdateSubprograms() {
+                var url = '@Url.Content("~/User/LoadSubprograms")';
+                $("#subprograms").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    data: { programID: $("#programs").val() },
+                    success: function (subprograms) {
+                        $.each(subprograms, function (i, subprogram) {
+                            $("#subprograms").append('<option value="' + subprogram.Value + '">' +
+                                 subprogram.Text + '</option>');
+                        });
+                    },
+                });
+                return false;
+            }
+        </script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

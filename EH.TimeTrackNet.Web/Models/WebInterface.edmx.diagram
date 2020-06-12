@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7dc29e5ab2434a0bab28f69729aa15a4" Name="Diagram1">
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetApplicationRolePermission" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetApplication" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetApplicationUserRole" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetPermission" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetRole" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetSitemapNode" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetSitemap" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MC.WebInterfaceModel.AspNetUser" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetApplicationRolePermissions_AspNetApplications" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetApplicationRolePermissions_AspNetPermissions" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetApplicationRolePermissions_AspNetRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetApplicationUserRoles_AspNetApplications" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetSitemaps_AspNetApplications" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetApplicationUserRoles_AspNetRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetApplicationUserRoles_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetSitemapNodes_AspNetPermissions" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetSitemapNodes_AspNetSitemapNodes" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_AspNetSitemapNodes_AspNetSitemaps" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MC.WebInterfaceModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

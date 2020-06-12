@@ -1,0 +1,80 @@
+﻿@using EH.TimeTrackNet.Web.ViewModels
+@model EditSubprogramsViewModel
+@{
+    ViewBag.Title = "Edit / New Subprograms";
+}
+
+<!-- BEGIN PAGE CONTENT -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm("EditSubprogramSubmit", "Admin", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+    {
+        @Html.ValidationSummary(true)
+        <div class="form-body">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-md-3">Subprogram Number <span class="required"> * </span></label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Code)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Code)</span>
+                    </div>
+                    @Html.HiddenFor(m => m.Code)
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <br />
+                <div class="row">
+                    <label class="control-label col-md-3">Subprogram Description <span class="required"> * </span></label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Description)
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Description)</span>
+                        @if (Model.ShowMessageDescription == true)
+                        {
+                            <span style="color:red">@Html.DisplayFor(m => m.ValidationMessage)</span>
+                        }
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div>
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.SelectedProgram)
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn blue">Save</button>
+                        <button type="button" class="btn blue" id="back">Back</button>
+                        <button type="button" class="btn blue" id="clear">Clear Fields</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @section PageLevelScripts {
+        <script>
+            $(document).ready(function () {
+                $("#back").on('click', function () {
+                    var url = '@Url.Action("MaintainSubprogramsHelper", "Admin", new { ID = @Html.Raw(Model.SelectedProgram) })';
+                    window.location.href = url;
+                })
+
+                $("#clear").on('click', function () {
+                    $("#Code").val("");
+                    $("#Description").val("");
+                })
+            })
+        </script>
+    }
+</body>
+</html>
+<!-- END PAGE CONTENT -->

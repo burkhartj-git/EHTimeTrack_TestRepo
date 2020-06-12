@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="sz_region_id" />
+          </Key>
+          <Property Name="sz_region_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sz_region_type_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sz_fips_code" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="sz_abbreviation" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sz_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="sz_description" Type="varchar" MaxLength="255" />
+          <Property Name="sz_mdr_code" Type="varchar" MaxLength="10" />
+          <Property Name="sz_gnis_code" Type="varchar" MaxLength="100" />
+          <Property Name="n_longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="n_latitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="sz_image_location" Type="varchar" MaxLength="100" />
+          <Property Name="sz_modified_by" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dt_modified" Type="datetime" Nullable="false" />
+          <Property Name="b_inactive" Type="bit" Nullable="false" />
+          <Property Name="sz_timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MC.Core.dbo.RegionType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RegionType">
+          <Key>
+            <PropertyRef Name="sz_region_type_id" />
+            <PropertyRef Name="sz_name" />
+            <PropertyRef Name="n_sequence" />
+            <PropertyRef Name="sz_modified_by" />
+            <PropertyRef Name="dt_modified" />
+            <PropertyRef Name="b_inactive" />
+            <PropertyRef Name="sz_timestamp" />
+          </Key>
+          <Property Name="sz_region_type_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="sz_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="sz_description" Type="varchar" MaxLength="1000" />
+          <Property Name="n_sequence" Type="int" Nullable="false" />
+          <Property Name="sz_modified_by" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dt_modified" Type="datetime" Nullable="false" />
+          <Property Name="b_inactive" Type="bit" Nullable="false" />
+          <Property Name="sz_timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CoreModelStoreContainer">
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegionType" EntityType="Self.RegionType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RegionType].[sz_region_type_id] AS [sz_region_type_id], 
+    [RegionType].[sz_name] AS [sz_name], 
+    [RegionType].[sz_description] AS [sz_description], 
+    [RegionType].[n_sequence] AS [n_sequence], 
+    [RegionType].[sz_modified_by] AS [sz_modified_by], 
+    [RegionType].[dt_modified] AS [dt_modified], 
+    [RegionType].[b_inactive] AS [b_inactive], 
+    [RegionType].[sz_timestamp] AS [sz_timestamp]
+    FROM [dbo].[RegionType] AS [RegionType]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="sz_region_id" />
+          </Key>
+          <Property Name="sz_region_id" Type="Guid" Nullable="false" />
+          <Property Name="sz_region_type_id" Type="Guid" Nullable="false" />
+          <Property Name="sz_fips_code" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sz_abbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sz_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sz_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sz_mdr_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sz_gnis_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="n_longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="n_latitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="sz_image_location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sz_modified_by" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="b_inactive" Type="Boolean" Nullable="false" />
+          <Property Name="sz_timestamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="RegionType">
+          <Key>
+            <PropertyRef Name="sz_region_type_id" />
+            <PropertyRef Name="sz_name" />
+            <PropertyRef Name="n_sequence" />
+            <PropertyRef Name="sz_modified_by" />
+            <PropertyRef Name="dt_modified" />
+            <PropertyRef Name="b_inactive" />
+            <PropertyRef Name="sz_timestamp" />
+          </Key>
+          <Property Name="sz_region_type_id" Type="Guid" Nullable="false" />
+          <Property Name="sz_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sz_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="n_sequence" Type="Int32" Nullable="false" />
+          <Property Name="sz_modified_by" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="b_inactive" Type="Boolean" Nullable="false" />
+          <Property Name="sz_timestamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityContainer Name="ApplicationServicesCoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="RegionTypes" EntityType="Self.RegionType" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoreModelStoreContainer" CdmEntityContainer="ApplicationServicesCoreEntities">
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="CoreModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="sz_region_id" ColumnName="sz_region_id" />
+                <ScalarProperty Name="sz_region_type_id" ColumnName="sz_region_type_id" />
+                <ScalarProperty Name="sz_fips_code" ColumnName="sz_fips_code" />
+                <ScalarProperty Name="sz_abbreviation" ColumnName="sz_abbreviation" />
+                <ScalarProperty Name="sz_name" ColumnName="sz_name" />
+                <ScalarProperty Name="sz_description" ColumnName="sz_description" />
+                <ScalarProperty Name="sz_mdr_code" ColumnName="sz_mdr_code" />
+                <ScalarProperty Name="sz_gnis_code" ColumnName="sz_gnis_code" />
+                <ScalarProperty Name="n_longitude" ColumnName="n_longitude" />
+                <ScalarProperty Name="n_latitude" ColumnName="n_latitude" />
+                <ScalarProperty Name="sz_image_location" ColumnName="sz_image_location" />
+                <ScalarProperty Name="sz_modified_by" ColumnName="sz_modified_by" />
+                <ScalarProperty Name="dt_modified" ColumnName="dt_modified" />
+                <ScalarProperty Name="b_inactive" ColumnName="b_inactive" />
+                <ScalarProperty Name="sz_timestamp" ColumnName="sz_timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegionTypes">
+            <EntityTypeMapping TypeName="CoreModel.RegionType">
+              <MappingFragment StoreEntitySet="RegionType">
+                <ScalarProperty Name="sz_region_type_id" ColumnName="sz_region_type_id" />
+                <ScalarProperty Name="sz_name" ColumnName="sz_name" />
+                <ScalarProperty Name="sz_description" ColumnName="sz_description" />
+                <ScalarProperty Name="n_sequence" ColumnName="n_sequence" />
+                <ScalarProperty Name="sz_modified_by" ColumnName="sz_modified_by" />
+                <ScalarProperty Name="dt_modified" ColumnName="dt_modified" />
+                <ScalarProperty Name="b_inactive" ColumnName="b_inactive" />
+                <ScalarProperty Name="sz_timestamp" ColumnName="sz_timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
